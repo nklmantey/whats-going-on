@@ -35,7 +35,7 @@ const ButtonContainer = styled(TouchableOpacity)({
   backgroundColor: "#000",
   width: "100%",
   height: 50,
-  paddingHorizontal: 20,
+  paddingHorizontal: 28,
   borderRadius: 16,
   alignItems: "center",
   flexDirection: "row",
@@ -43,4 +43,5 @@ const ButtonContainer = styled(TouchableOpacity)({
 
 const ButtonText = styled(MediumText)({
   color: "#fff",
+  fontSize: 20,
 });

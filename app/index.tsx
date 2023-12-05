@@ -1,7 +1,7 @@
 import { AnimatedEntryCard } from "@/components/global";
 import { Button } from "@/components/ui";
 import { FancyText } from "@/components/ui/StyledText";
-import { DummyEntryDataTop, DummyEntryDataBottom } from "@/constants/Data";
+import { IndexScreenEntryData } from "@/constants/Data";
 import { SafeAreaView, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import styled from "styled-components/native";
@@ -11,12 +11,14 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { useEffect } from "react";
+import { useRouter } from "expo-router";
 
 export default function OnoardingScreen() {
   const translateX = useSharedValue(500);
+  const { push } = useRouter();
 
   useEffect(() => {
-    translateX.value = withSpring(0, { damping: 100, stiffness: 50 });
+    translateX.value = withSpring(0, { damping: 10, stiffness: 80 });
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -25,11 +27,15 @@ export default function OnoardingScreen() {
     };
   });
 
+  function handleGoToNextScreen() {
+    push("/(onboarding)");
+  }
+
   return (
     <SafeAreaContainer>
       <Container>
         <View>
-          {DummyEntryDataTop.map((entry, index) => (
+          {IndexScreenEntryData.top.map((entry, index) => (
             <AnimatedEntryCard key={index} {...entry} />
           ))}
         </View>
@@ -37,12 +43,12 @@ export default function OnoardingScreen() {
           <OnboardingText>What's going on?</OnboardingText>
         </OnboardingTextView>
         <View>
-          {DummyEntryDataBottom.map((entry, index) => (
+          {IndexScreenEntryData.bottom.map((entry, index) => (
             <AnimatedEntryCard key={index} {...entry} />
           ))}
           <AnimatedButtonView style={animatedStyle}>
             <Button
-              onPress={() => {}}
+              onPress={handleGoToNextScreen}
               title=""
               iconOnly
               icon={<Ionicons name="arrow-forward" size={20} color="#fff" />}

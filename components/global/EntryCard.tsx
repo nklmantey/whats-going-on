@@ -16,21 +16,25 @@ export default function EntryCard({
   text,
   direction,
   rotation,
-  translateXValue,
+  translateXValue = 0,
+  translateYValue = 0,
   avatar,
   color,
 }: EntryCardType) {
-  const { width } = Dimensions.get("window");
+  const { width, height } = Dimensions.get("window");
   const translateX = useSharedValue(direction === "left" ? -width : width);
+  const translateY = useSharedValue(direction === "top" ? -height : height);
 
   useEffect(() => {
-    translateX.value = withSpring(0, { damping: 100, stiffness: 50 });
+    translateX.value = withSpring(0, { damping: 10, stiffness: 80 });
+    translateY.value = withSpring(0, { damping: 10, stiffness: 80 });
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
         { translateX: translateX.value + translateXValue },
+        { translateY: translateY.value + translateYValue },
         { rotate: rotation },
       ],
     };

@@ -7,7 +7,8 @@ export type EntryCardType = {
   category: string;
   text: string;
   rotation: string;
-  translateXValue: number;
+  translateXValue?: number;
+  translateYValue?: number;
   color: string;
-  direction: "left" | "right";
+  direction: string;
 };
