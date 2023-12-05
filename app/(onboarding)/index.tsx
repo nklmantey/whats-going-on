@@ -29,7 +29,7 @@ export default function Onboarding() {
   }
 
   function handleGoToAuth() {
-    push("/(auth)");
+    push("/auth");
   }
 
   function generateRandomRotation() {

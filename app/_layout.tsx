@@ -49,5 +49,19 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack>
+      <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(auth)/auth"
+        options={{
+          title: "Log in or sign up",
+          headerTitleStyle: {
+            fontFamily: "FigtreeBold",
+          },
+          presentation: "modal",
+        }}
+      />
+    </Stack>
+  );
 }
